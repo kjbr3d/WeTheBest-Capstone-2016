@@ -46,20 +46,16 @@
 
 
 						if (isset($_POST['sign_in'])) {
-							abstract class LoginCode{
-								const Failure = 0;
-								const Success = 1;
 
-							}
 							require "../functions/login/login.php";
 
-							if( login() === LoginCode::Success ) {
+							if( login() === True ) {
 				                session_start();
 								$_SESSION['status'] = 'started';
 				                $_SESSION['userName'] = $username = htmlspecialchars($_POST["name"]);;
 								header("Location: home.php");
 							}else {
-
+								echo "<h1 class = 'bg-danger'>The login failed.\nThe credentials dont match</h1>";
 							}
 						}
 					?>
