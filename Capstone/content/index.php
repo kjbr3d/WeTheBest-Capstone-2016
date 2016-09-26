@@ -15,7 +15,7 @@
 				</div>
 				<div class = "col-md-4"></div>
 			</div>
-			<div class = "row"><p>  </p></row>
+			<div class = "row"><p>  </p></div>
 			<div class = "row">
 	  			<div class="col-sm-offset-3 col-md-6">
 					<form class="form-horizontal" method = "POST" action = "<?= $_SERVER['PHP_SELF'] ?>" >
@@ -40,39 +40,16 @@
 				</div>
 				<div class="col-md-3"></div>
 			</div>
+			<div class = "row">
+				<div class="col-md-offset-3 col-md-6">
+					<?php
+					require "../login/login.php";
+						login();
+					?>
+
+				</div>
+
+			</div>
 		</div>
 	</body>
 </html>
-
-
-<?php
-	require "connect.php";
-	if (isset($_POST['sign_in'])) {
-		echo ("<h1>You hit submit</h1>");
-		$sql = "SELECT userName, password FROM Login WHERE username = ?";
-		$stmt = $db->prepare($sql);
-		if($stmt === false) {
-			trigger_error('Wrong SQL: ' . $sql . ' Error: ' . $conn->errno . ' ' . $conn->error, E_USER_ERROR);
-		}
-		$username = htmlspecialchars($_POST["name"]);
-		//Binding the parameter
-        if(!$stmt->bind_param('s', $username)){
-          	echo "parameter binding failed";
-        }
-		if(!$stmt->execute()){
-    		echo "query execution failed";
-    	}
-		//Bind results to variables
-		if(!$stmt->bind_result($user, $userPassword)){
-			echo"result binding failed";
-		}
-		$password = htmlspecialchars($_POST['password']);
-		if( $password === $userPassword ) {
-			echo "Your password is" .$password;
-		}else {
-			echo $userPassword;
-
-		}
-	}
-
-?>
