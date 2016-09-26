@@ -1,7 +1,7 @@
 <?
-
-	function login():LoginCode{
-		require "../../connection/connect.php";
+	function login() {
+		require "../connection/connect.php";
+		if (isset($_POST['sign_in'])) {
 			$sql = "SELECT password FROM Login WHERE username = ?";
 			$stmt = $db->prepare($sql);
 			if($stmt === false) {
@@ -27,9 +27,9 @@
 			$password = htmlspecialchars($_POST['password']);
 
 			if( $password === $userPassword ) {
-                return LoginCode::Success;
+				header("Location: home.php");
 			}else {
-                return LoginCode::Failure;
+				echo "<h1 class = 'bg-danger'>The login failed.  The credentials dont match</h1>";
 
 			}
 		}
