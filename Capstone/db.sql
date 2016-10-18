@@ -1,7 +1,6 @@
 CREATE TABLE registration (
   userId INT(10) UNSIGNED AUTO_INCREMENT,
   fullName VARCHAR(30),
-  userName VARCHAR(30),
   password VARCHAR(10),
   email VARCHAR(30),
   phoneNumber VARCHAR(30),
@@ -18,8 +17,8 @@ CREATE TABLE registration (
 );
 
 CREATE TABLE Login (
-  userName varchar(30) REFERENCES registration,
-  password varchar(30) REFERENCES registration
+  email varchar(30) REFERENCES registration,
+  hash varchar(50)
 );
 
 CREATE TABLE Scholarship (
