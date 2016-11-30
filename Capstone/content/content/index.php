@@ -29,7 +29,12 @@
 
 	</head>
 	<body onload="myFunction()">
+		<script>
+			function myFunction(){
 
+				window.location.hash = 'login';
+			}
+		</script>
 		<div class="container">
 
 			<div class = "row">
